@@ -13,16 +13,10 @@
   <td class="align-middle">
     <div class="d-flex">
     <%= link_to "",
-      nil,
-      class:"fas fa-edit fa-lg text-light me-3 p-2 py-3 border border-success gradient-custom-2", 
-      remote:true,
-      data: {
-      controller: "todo",
-      action: "todo#toggleEdit",
-      todo_id_param: "edit-todo-#{todo.id}"
-      }
-    %> 
-
+      edit_todo_path(todo),
+      class:"fas fa-edit fa-lg text-light me-3 p-2 py-3 border border-success gradient-custom-2",
+      data:{ turbo_frame: 'modal'}
+    %>
     <%= button_to "",
       todo,
       method: :delete,
@@ -32,7 +26,4 @@
   </td>
 </tr>
 <tr>
-<div id="edit-todo-<%= todo.id %>" class="d-none">
-    <%= render "todos/form", todo: todo %>
-  </div>
-</tr>
+

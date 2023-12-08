@@ -1,5 +1,4 @@
 
-<div class=" notice alert alert-warning alert-dismissible fade show" role="alert">
 <%= form_with(model: todo) do |form| %>
   <% if todo.errors.any? %>
     <div style="color: red">
@@ -12,7 +11,8 @@
       </ul>
     </div>
   <% end %>
-<div class="d-flex d-flex-wrap gap-3 justify-content-center ">
+  <div class="d-flex d-flex-wrap gap-3 justify-content-center ">
+    <div>
    <div class="form-floating mb-4">
     <%= form.text_field :title,
       autofocus: true,
@@ -35,7 +35,8 @@
     %>
     <label class="form-label" for="form4Example4">Body</label>
    </div>
-
+    </div>
+    <div>
     <div>
      <label class="form-label" for="form5Example5">Due Date</label>
       <%= form.datetime_field :due_date,
@@ -45,14 +46,15 @@
         style:"width: 20vw;"
       %>
     </div>
+    <div>
     <%= form.label :category %>
 <%= form.select :category, Todo.categories.keys.map { |cat| [cat.capitalize, cat] }, {}, class: 'form-control' %>
-</div>
+    </div>
+    </div>
+    </div>
   <div>
-      <%= form.submit 'Create todo', class: 'btn btn-primary' %>
+      <%= form.submit 'Send', class: 'btn btn-primary' %>
   </div>
 <% end %>
 
-       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
 
