@@ -1,0 +1,58 @@
+
+<div class=" notice alert alert-warning alert-dismissible fade show" role="alert">
+<%= form_with(model: todo) do |form| %>
+  <% if todo.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
+
+      <ul>
+        <% todo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="d-flex d-flex-wrap gap-3 justify-content-center ">
+   <div class="form-floating mb-4">
+    <%= form.text_field :title,
+      autofocus: true,
+      autocomplete: "title",
+      id:"form3Example3",
+      class:"form-control form-control-lg",
+      placeholder:"Enter a title",
+      style:"width: 20vw;"
+    %>
+    <label class="form-label" for="form3Example3">Title</label>
+   </div>
+   <div class="form-floating mb-4">
+    <%= form.text_area :body,
+      autofocus: true,
+      autocomplete: "body",
+      id:"form4Example4",
+      class:"form-control form-control-sm",
+      placeholder:"Enter a body",
+      style:"height: 100px; width: 20vw;"
+    %>
+    <label class="form-label" for="form4Example4">Body</label>
+   </div>
+
+    <div>
+     <label class="form-label" for="form5Example5">Due Date</label>
+      <%= form.datetime_field :due_date,
+        class:"form-control form-control-sm",
+        id:"form5Example5",
+        placeholder:"Enter a due date",
+        style:"width: 20vw;"
+      %>
+    </div>
+    <%= form.label :category %>
+<%= form.select :category, Todo.categories.keys.map { |cat| [cat.capitalize, cat] }, {}, class: 'form-control' %>
+</div>
+  <div>
+      <%= form.submit 'Create todo', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+

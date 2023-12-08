@@ -1,0 +1,38 @@
+<tr class="fw-normal" id="<%= dom_id todo %>">
+  <th>
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+      alt="avatar 1" style="width: 45px; height: auto;">
+    <span class="ms-2"><%= todo.title %></span>
+  </th>
+  <td class="align-middle">
+    <span><%= todo.body %></span>
+  </td>
+  <td class="align-middle">
+    <h6 class="mb-0"><span class="badge bg-danger"><%= todo.category %></span></h6>
+  </td>
+  <td class="align-middle">
+    <div class="d-flex">
+    <%= link_to "",
+      nil,
+      class:"fas fa-edit fa-lg text-light me-3 p-2 py-3 border border-success gradient-custom-2", 
+      remote:true,
+      data: {
+      controller: "todo",
+      action: "todo#toggleEdit",
+      todo_id_param: "edit-todo-#{todo.id}"
+      }
+    %> 
+
+    <%= button_to "",
+      todo,
+      method: :delete,
+      class:"fas fa-trash-alt fa-lg text-light p-2 py-3 border border-success gradient-custom-2"
+    %>
+    </div>
+  </td>
+</tr>
+<tr>
+<div id="edit-todo-<%= todo.id %>" class="d-none">
+    <%= render "todos/form", todo: todo %>
+  </div>
+</tr>
