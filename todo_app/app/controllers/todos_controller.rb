@@ -3,7 +3,7 @@ class TodosController < ApplicationController
   before_action :authenticate_user!
   # GET /todos or /todos.json
   def index
-    @todos = Todo.all
+    @todos = Todo.all.filter { |todo| todo.user_id == current_user.id }
   end
 
   # GET /todos/1 or /todos/1.json
@@ -21,7 +21,6 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new(todo_params)
     @todo.user = current_user
-
     respond_to do |format|
       if @todo.save
         format.html { redirect_to root_url, notice: 'Todo was successfully created.' }
@@ -60,6 +59,9 @@ class TodosController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_todo
+    if Todo.find(params[:id]).user_id != current_user.id
+      redirect_to root_url, notice: 'You are not authorized to view this todo.'
+    end
     @todo = Todo.find(params[:id])
   end
 

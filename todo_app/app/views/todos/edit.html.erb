@@ -1,5 +1,6 @@
 <%= turbo_frame_tag "modal" do %>
-  <div class="modal-dialog">
+<div style="width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.5);">
+  <div class="modal-dialog p-5" style="width: 50vw; background-color: white;">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">
@@ -10,5 +11,6 @@
 
       <%= render "form", todo: @todo %>
     </div>
+  </div>
 </div>
 <% end %>

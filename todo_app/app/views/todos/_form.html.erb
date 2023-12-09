@@ -48,13 +48,12 @@
     </div>
     <div>
     <%= form.label :category %>
-<%= form.select :category, Todo.categories.keys.map { |cat| [cat.capitalize, cat] }, {}, class: 'form-control' %>
+    <%= form.select :category, Todo.categories.keys.map { |cat| [cat.capitalize, cat] }, {}, class: 'form-control' %>
     </div>
     </div>
+          <%= form.submit 'Send', class: 'btn btn-warning absolute top-0 right-0 start-0 ' %>
+
     </div>
-  <div>
-      <%= form.submit 'Send', class: 'btn btn-primary' %>
-  </div>
 <% end %>
 
 
