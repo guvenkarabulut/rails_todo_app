@@ -1,8 +1,14 @@
-<tr class="fw-normal" id="<%= dom_id todo %>">
+<tr class="table-row <%= todo.completed? ? "completed" : "" %>" id="<%= dom_id todo %>">
   <th>
-    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-      alt="avatar 1" style="width: 45px; height: auto;">
-    <span class="ms-2"><%= todo.title %></span>
+    <div class="d-flex">
+    <%= button_to "",
+      complete_todo_path(todo),
+      method: :patch,
+      class:"fas fa-check-circle fa-lg text-light p-2 py-3 border border-success gradient-custom-2",
+      disabled: todo.completed?
+    %>
+  <span class="ms-2"><%= todo.title %></span>
+    </div>
   </th>
   <td class="align-middle">
     <span><%= todo.body %></span>
@@ -15,15 +21,16 @@
     <%= link_to "",
       edit_todo_path(todo),
       class:"fas fa-edit fa-lg text-light me-3 p-2 py-3 border border-success gradient-custom-2",
+      style:todo.completed? ? 'pointer-events:none;' : '',
       data:{ turbo_frame: 'modal'}
     %>
     <%= button_to "",
       todo,
       method: :delete,
-      class:"fas fa-trash-alt fa-lg text-light p-2 py-3 border border-success gradient-custom-2"
+      class:"fas fa-trash-alt fa-lg text-light p-2 py-3 border border-success gradient-custom-2",
+      disabled: todo.completed?
     %>
     </div>
   </td>
 </tr>
-<tr>
 

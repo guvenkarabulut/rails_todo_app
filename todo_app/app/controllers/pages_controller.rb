@@ -7,7 +7,7 @@ class PagesController < ApplicationController
              else
                Todo.all.filter { |todo| todo.user_id == current_user.id && todo.category == params[:category] }
              end
-    @todos = @todos.sort_by(&:created_at).reverse
+    @todos = @todos.sort_by(&:created_at)
   end
 
   def about; end

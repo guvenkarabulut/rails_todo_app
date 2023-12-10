@@ -20,6 +20,7 @@ class TodosController < ApplicationController
   # POST /todos or /todos.json
   def create
     @todo = Todo.new(todo_params)
+    @todo.status = 'active'
     @todo.user = current_user
     respond_to do |format|
       if @todo.save
@@ -43,6 +44,13 @@ class TodosController < ApplicationController
         format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def complete
+    @todo = Todo.find(params[:id])
+    @todo.status = 'completed'
+    @todo.save
+    redirect_to root_url, notice: 'Todo was successfully completed.'
   end
 
   # DELETE /todos/1 or /todos/1.json
