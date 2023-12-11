@@ -5,6 +5,7 @@ class SubTodosController < ApplicationController
 
   def create
     @todo = Todo.find(params(:todo_id))
+    puts @todo
     @sub_todos = @todo.sub_todos.create(sub_todo_params)
   end
 
