@@ -95,3 +95,9 @@ height: 100%;
 .table-row.completed {
   opacity: 0.8;
 }
+
+.table-row.time-over {
+  background-color: #f8d7da !important;
+  color: #721c24 !important;
+  opacity: 0.6;
+}
